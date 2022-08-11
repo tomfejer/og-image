@@ -145,11 +145,11 @@ export function getHtml(parsedReq: ParsedRequest) {
               md ? marked(text) : sanitizeHtml(text)
             )}
             </div>
-            <div class="heading">${emojify(marked(tag))}
+            <div class="heading">${tag}
             </div>
-            <div class="heading">${emojify(marked(readingTime))}
+            <div class="heading">${readingTime}
              </div>
-             <div class="heading">${emojify(marked(date))}
+             <div class="heading">${date}
              </div>
         </div>
     </body>
