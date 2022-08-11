@@ -36,6 +36,34 @@ export function parseRequest(req: IncomingMessage) {
     text = arr.join(".");
   }
 
+  function getArray(stringOrArray: string[] | string | undefined): string[] {
+    if (typeof stringOrArray === "undefined") {
+      return [];
+    } else if (Array.isArray(stringOrArray)) {
+      return stringOrArray;
+    } else {
+      return [stringOrArray];
+    }
+  }
+
+  function getDefaultImages(images: string[], theme: Theme): string[] {
+    const defaultImage =
+      theme === "light"
+        ? "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg"
+        : "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg";
+
+    if (!images || !images[0]) {
+      return [defaultImage];
+    }
+    if (
+      !images[0].startsWith("https://assets.vercel.com/") &&
+      !images[0].startsWith("https://assets.zeit.co/")
+    ) {
+      images[0] = defaultImage;
+    }
+    return images;
+  }
+
   const parsedRequest: ParsedRequest = {
     fileType: extension === "jpeg" ? extension : "png",
     text: decodeURIComponent(text),
@@ -54,32 +82,4 @@ export function parseRequest(req: IncomingMessage) {
     parsedRequest.theme
   );
   return parsedRequest;
-}
-
-function getArray(stringOrArray: string[] | string | undefined): string[] {
-  if (typeof stringOrArray === "undefined") {
-    return [];
-  } else if (Array.isArray(stringOrArray)) {
-    return stringOrArray;
-  } else {
-    return [stringOrArray];
-  }
-}
-
-function getDefaultImages(images: string[], theme: Theme): string[] {
-  const defaultImage =
-    theme === "light"
-      ? "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg"
-      : "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg";
-
-  if (!images || !images[0]) {
-    return [defaultImage];
-  }
-  if (
-    !images[0].startsWith("https://assets.vercel.com/") &&
-    !images[0].startsWith("https://assets.zeit.co/")
-  ) {
-    images[0] = defaultImage;
-  }
-  return images;
 }
