@@ -117,9 +117,9 @@ function getCss() {
 export function getHtml(parsedReq: ParsedRequest) {
   const {
     text,
-    theme,
+    // theme,
     md,
-    fontSize,
+    // fontSize,
     // images,
     // widths,
     // heights,
@@ -133,6 +133,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        ${getCss()}
     </style>
     <body>
         <div class="App">
