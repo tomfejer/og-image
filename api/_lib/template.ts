@@ -48,64 +48,68 @@ function getCss(theme: string, fontSize: string) {
         src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
       }
 
-    body {
-        background: ${background};
-        background-image: radial-gradient(circle at 25px 25px, ${radial} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${radial} 2%, transparent 0%);
-        background-size: 100px 100px;
+      body {
+        background: #fafafa;
+        width: 100vw;
         height: 100vh;
+        padding: 0;
+        margin: 0;
         display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-    }
-
-    code {
-        color: #D400FF;
-        font-family: 'Vera';
-        white-space: pre-wrap;
-        letter-spacing: -5px;
-    }
-
-    code:before, code:after {
-        content: '\`';
-    }
-
-    .logo-wrapper {
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      
+      .App {
         display: flex;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
-        justify-items: center;
-    }
-
-    .logo {
-        margin: 0 75px;
-    }
-
-    .plus {
-        color: #BBB;
-        font-family: Times New Roman, Verdana;
-        font-size: 100px;
-    }
-
-    .spacer {
-        margin: 150px;
-    }
-
-    .emoji {
-        height: 1em;
-        width: 1em;
-        margin: 0 .05em 0 .1em;
-        vertical-align: -0.1em;
-    }
-    
-    .heading {
-        font-family: 'Inter', sans-serif;
-        font-size: ${sanitizeHtml(fontSize)};
+        flex-direction: column;
+        gap: 1rem;
+        margin: 3rem;
+      }
+      
+      .heading {
+        font-family: "Inter", sans-serif;
+        font-size: 72px;
+        letter-spacing: -2.88px;
         font-style: normal;
-        color: ${foreground};
-        line-height: 1.8;
-    }`;
+        font-weight: bold;
+        color: var(--foreground);
+        line-height: 1.2;
+        opacity: 0.8;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      
+      .detailsWrapper {
+        display: flex;
+        gap: 4px;
+        opacity: 0.4;
+      }
+      
+      .date {
+        font-family: "Inter", sans-serif;
+        font-size: 32px;
+      }
+      
+      .readingTime {
+        font-size: 32px;
+        font-style: italic;
+        font-family: Charter, Garamond, serif;
+      }
+      
+      .footer {
+        position: absolute;
+        bottom: 3rem;
+        left: 3rem;
+        right: 3rem;
+        font-family: "Inter", sans-serif;
+        font-size: 32px;
+        text-align: right;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.6);
+        opacity: 0.4;
+      }`;
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
@@ -130,27 +134,16 @@ export function getHtml(parsedReq: ParsedRequest) {
         ${getCss(theme, fontSize)}
     </style>
     <body>
-        <div>
-            <div class="spacer">
-            <div class="logo-wrapper">
-                ${images
-                  .map(
-                    (img, i) =>
-                      getPlusSign(i) + getImage(img, widths[i], heights[i])
-                  )
-                  .join("")}
-            </div>
-            <div class="spacer">
+        <div class="App">
             <div class="heading">${emojify(
               md ? marked(text) : sanitizeHtml(text)
             )}
             </div>
-            <div class="heading">${tag}
-            </div>
-            <div class="heading">${readingTime}
-             </div>
-             <div class="heading">${date}
-             </div>
+            <div class="detailsWrapper">
+        <span class="date">${date}</span>
+        <span class="readingTime">${readingTime}</span>
+      </div>
+      <div class="footer">tomfejer.com/${tag}</div>
         </div>
     </body>
 </html>`;
