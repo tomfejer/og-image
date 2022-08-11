@@ -17,8 +17,8 @@ const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString(
 );
 
 function getCss() {
-//   theme: string
-// fontSize: string
+  //   theme: string
+  // fontSize: string
   //   let background = "white";
   //   let foreground = "black";
   //   let radial = "lightgray";
@@ -133,7 +133,6 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, fontSize)}
     </style>
     <body>
         <div class="App">
