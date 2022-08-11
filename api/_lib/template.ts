@@ -16,16 +16,19 @@ const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString(
   "base64"
 );
 
-function getCss(theme: string, fontSize: string) {
-  let background = "white";
-  let foreground = "black";
-  let radial = "lightgray";
+function getCss(
+  theme: string
+  // fontSize: string
+) {
+  //   let background = "white";
+  //   let foreground = "black";
+  //   let radial = "lightgray";
 
-  if (theme === "dark") {
-    background = "black";
-    foreground = "white";
-    radial = "dimgray";
-  }
+  //   if (theme === "dark") {
+  //     background = "black";
+  //     foreground = "white";
+  //     radial = "dimgray";
+  //   }
   return `
     @font-face {
         font-family: 'Inter';
