@@ -118,9 +118,9 @@ export function getHtml(parsedReq: ParsedRequest) {
     theme,
     md,
     fontSize,
-    images,
-    widths,
-    heights,
+    // images,
+    // widths,
+    // heights,
     tag,
     readingTime,
     date
@@ -149,16 +149,16 @@ export function getHtml(parsedReq: ParsedRequest) {
 </html>`;
 }
 
-function getImage(src: string, width = "auto", height = "225") {
-  return `<img
-        class="logo"
-        alt="Generated Image"
-        src="${sanitizeHtml(src)}"
-        width="${sanitizeHtml(width)}"
-        height="${sanitizeHtml(height)}"
-    />`;
-}
+// function getImage(src: string, width = "auto", height = "225") {
+//   return `<img
+//         class="logo"
+//         alt="Generated Image"
+//         src="${sanitizeHtml(src)}"
+//         width="${sanitizeHtml(width)}"
+//         height="${sanitizeHtml(height)}"
+//     />`;
+// }
 
-function getPlusSign(i: number) {
-  return i === 0 ? "" : '<div class="plus">+</div>';
-}
+// function getPlusSign(i: number) {
+//   return i === 0 ? "" : '<div class="plus">+</div>';
+// }
