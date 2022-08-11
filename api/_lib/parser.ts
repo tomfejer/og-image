@@ -73,9 +73,9 @@ export function parseRequest(req: IncomingMessage) {
     images: getArray(images),
     widths: getArray(widths),
     heights: getArray(heights),
-    tag: decodeURIComponent(tag),
-    readingTime: decodeURIComponent(readingTime),
-    date: decodeURIComponent(date)
+    tag: getArray(tag),
+    readingTime: getArray(readingTime),
+    date: getArray(date)
   };
   parsedRequest.images = getDefaultImages(
     parsedRequest.images,

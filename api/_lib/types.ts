@@ -4,9 +4,9 @@ export type Theme = "light" | "dark";
 export interface ParsedRequest {
   fileType: FileType;
   text: string;
-  tag: string;
-  readingTime: string;
-  date: string;
+  tag: string[];
+  readingTime: string[];
+  date: string[];
   theme: Theme;
   md: boolean;
   fontSize: string;
